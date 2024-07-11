@@ -4,19 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinate Converter</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card-panel {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #map {
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Coordinate Converter</h1>
-    <p>Google mapの座標形式（D.DDDDD°,D.DDDDD°）からGeocachingで用いる座標形式（D°MM.MMM', D°MM.MMM'）に変換します</p>
-    <form id="coordinateForm">
-        <label for="coordinates">Google Mapの座標をペーストしてください</label>
-        <input type="text" id="coordinates" name="coordinates" required>
-        <br>
-        <button type="submit">変換</button>
-    </form>
-    <div id="result"></div>
-    <button id="copyButton" style="display: none;">クリップボードにコピー</button>
+    <div class="container">
+        <h1 class="center-align">Coordinate Converter</h1>
+        <div class="card-panel">
+            <form id="coordinateForm">
+                <div class="input-field">
+                    <input type="text" id="coordinates" name="coordinates" required>
+                    <label for="coordinates">Coordinates (Latitude, Longitude)</label>
+                </div>
+                <div class="center-align">
+                    <button class="btn waves-effect waves-light" type="submit">Convert</button>
+                </div>
+            </form>
+            <div id="result" class="center-align"></div>
+            <button id="copyButton" class="btn waves-effect waves-light" style="display: none;">Copy to Clipboard</button>
+        </div>
+        <div id="map" class="card-panel"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>

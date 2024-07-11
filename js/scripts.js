@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const copyButton = document.getElementById('copyButton');
         copyButton.style.display = 'inline';
         copyButton.onclick = () => copyToClipboard(resultText);
+
+        displayMap(latitude, longitude);
     });
 });
 
@@ -37,13 +39,25 @@ function convertToDM(degree, type) {
         direction = degree >= 0 ? 'E' : 'W';
     }
 
-    return `${direction} ${degrees}° ${minutes.toFixed(3)}'`;
+    return `${direction} ${degrees.toFixed(0)}° ${minutes.toFixed(3)}'`;
 }
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard');
+        M.toast({ html: 'Copied to clipboard', classes: 'rounded' });
     }).catch(err => {
         console.error('Could not copy text: ', err);
     });
+}
+
+function displayMap(lat, lon) {
+    const map = L.map('map').setView([lat, lon], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup(`Latitude: ${lat}, Longitude: ${lon}`)
+        .openPopup();
 }
