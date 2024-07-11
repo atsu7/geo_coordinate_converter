@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate Converter</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Coordinate Converter</h1>
+    <p>Google mapの座標形式（D.DDDDD°,D.DDDDD°）からGeocachingで用いる座標形式（D°MM.MMM', D°MM.MMM'）に変換します</p>
+    <form id="coordinateForm">
+        <label for="coordinates">Google Mapの座標をペーストしてください</label>
+        <input type="text" id="coordinates" name="coordinates" required>
+        <br>
+        <button type="submit">変換</button>
+    </form>
+    <div id="result"></div>
+    <button id="copyButton" style="display: none;">クリップボードにコピー</button>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
